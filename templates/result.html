@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Title -->
+
+    <div class="glass-card p-4 mb-4">
+
+        <h2 class="text-center">
+
+            🌾 Classification Results
+
+        </h2>
+
+        <hr>
+
+        <div class="row text-center">
+
+            <div class="col-md-6">
+
+                <h5>
+
+                    📍 Province
+
+                </h5>
+
+                <h3>
+
+                    {{ province }}
+
+                </h3>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <h5>
+
+                    🌱 Crop
+
+                </h5>
+
+                <h3>
+
+                    {{ crop }}
+
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Accuracy Cards -->
+
+    <div class="row mb-4">
+
+        {% if rf_acc != None %}
+
+        <div class="col-md-6">
+
+            <div class="glass-card accuracy-card p-4 text-center">
+
+                <h2>
+
+                    🌲 Random Forest
+
+                </h2>
+
+                <h1 class="accuracy-value">
+
+                    {{ "%.2f"|format(rf_acc) }}%
+
+                </h1>
+
+                <p>
+
+                    Classification Accuracy
+
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        {% if svm_acc != None %}
+
+        <div class="col-md-6">
+
+            <div class="glass-card accuracy-card p-4 text-center">
+
+                <h2>
+
+                    🌿 SVM
+
+                </h2>
+
+                <h1 class="accuracy-value">
+
+                    {{ "%.2f"|format(svm_acc) }}%
+
+                </h1>
+
+                <p>
+
+                    Classification Accuracy
+
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- Map -->
+
+    <div class="glass-card p-3 mb-4">
+
+        <h3 class="mb-3">
+
+            🗺 Classification Map
+
+        </h3>
+
+        {{ map_html|safe }}
+
+    </div>
+
+
+    <!-- Buttons -->
+
+    <div class="text-center mb-5">
+
+        <a href="/"
+           class="btn btn-ai">
+
+            🔄 Run Another Classification
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

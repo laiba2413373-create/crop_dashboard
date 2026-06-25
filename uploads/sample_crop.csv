@@ -1,0 +1,42 @@
+longitude,latitude,province,crop
+74.3587,31.5204,Punjab,Wheat
+74.3615,31.5240,Punjab,Wheat
+74.3650,31.5275,Punjab,Wheat
+74.3700,31.5300,Punjab,Wheat
+74.3750,31.5330,Punjab,Wheat
+73.0479,33.6844,Punjab,Wheat
+73.0550,33.6890,Punjab,Wheat
+73.0600,33.6930,Punjab,Wheat
+
+71.5249,30.1575,Punjab,Maize
+71.5300,30.1620,Punjab,Maize
+71.5350,30.1660,Punjab,Maize
+71.5400,30.1700,Punjab,Maize
+71.5450,30.1750,Punjab,Maize
+71.5500,30.1800,Punjab,Maize
+
+67.0011,24.8607,Sindh,Rice
+67.0060,24.8650,Sindh,Rice
+67.0100,24.8690,Sindh,Rice
+67.0150,24.8730,Sindh,Rice
+67.0200,24.8770,Sindh,Rice
+67.0250,24.8810,Sindh,Rice
+
+68.3737,25.3960,Sindh,Cotton
+68.3800,25.4000,Sindh,Cotton
+68.3850,25.4050,Sindh,Cotton
+68.3900,25.4100,Sindh,Cotton
+68.3950,25.4150,Sindh,Cotton
+68.4000,25.4200,Sindh,Cotton
+
+71.5785,34.0151,Khyber Pakhtunkhwa,Maize
+71.5840,34.0200,Khyber Pakhtunkhwa,Maize
+71.5890,34.0240,Khyber Pakhtunkhwa,Maize
+71.5940,34.0290,Khyber Pakhtunkhwa,Maize
+71.5990,34.0340,Khyber Pakhtunkhwa,Maize
+
+66.9750,30.1798,Balochistan,Sugarcane
+66.9800,30.1850,Balochistan,Sugarcane
+66.9850,30.1900,Balochistan,Sugarcane
+66.9900,30.1950,Balochistan,Sugarcane
+66.9950,30.2000,Balochistan,Sugarcane

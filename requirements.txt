@@ -1,0 +1,6 @@
+Flask
+earthengine-api
+folium
+pandas
+Werkzeug
+google-auth

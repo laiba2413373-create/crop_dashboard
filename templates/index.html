@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="glass-card p-4 mb-4">
+
+        <h2 class="text-center mb-4">
+            🌾 Crop Classification Dashboard
+        </h2>
+
+        <form action="/predict"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <div class="row">
+
+                <!-- Province -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Province
+                    </label>
+
+                    <select class="form-select"
+                            name="province"
+                            required>
+
+                        {% for p in provinces %}
+
+                        <option value="{{ p }}">
+                            {{ p }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <!-- Crop -->
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Crop
+                    </label>
+
+                    <select class="form-select"
+                            name="crop"
+                            required>
+
+                        {% for c in crops %}
+
+                        <option value="{{ c }}">
+                            {{ c }}
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- Model -->
+
+            <div class="mb-4">
+
+                <label class="form-label">
+
+                    Model
+
+                </label>
+
+                <select class="form-select"
+                        name="model">
+
+                    <option value="RF">
+                        Random Forest
+                    </option>
+
+                    <option value="SVM">
+                        SVM
+                    </option>
+
+                    <option value="Both">
+                        Both
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Dataset -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    Dataset
+
+                </label>
+
+                <div class="form-check">
+
+                    <input class="form-check-input"
+                           type="radio"
+                           name="dataset"
+                           value="default"
+                           checked
+                           onclick="toggleUpload(false)">
+
+                    <label class="form-check-label">
+
+                        Use Default Dataset
+
+                    </label>
+
+                </div>
+
+                <div class="form-check">
+
+                    <input class="form-check-input"
+                           type="radio"
+                           name="dataset"
+                           value="upload"
+                           onclick="toggleUpload(true)">
+
+                    <label class="form-check-label">
+
+                        Upload CSV Dataset
+
+                    </label>
+
+                </div>
+
+            </div>
+
+            <!-- Upload -->
+
+            <div class="mb-4"
+                 id="uploadDiv"
+                 style="display:none;">
+
+                <label class="form-label">
+
+                    Upload CSV
+
+                </label>
+
+                <input type="file"
+                       class="form-control"
+                       name="csv"
+                       accept=".csv">
+
+            </div>
+
+            <div class="text-center">
+
+                <button type="submit"
+                        class="btn btn-ai">
+
+                    🚀 Run Classification
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- Features -->
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <div class="glass-card p-4 text-center">
+
+                <h4>🌲 RF</h4>
+
+                <p>
+                    Random Forest Classification
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="glass-card p-4 text-center">
+
+                <h4>🌿 SVM</h4>
+
+                <p>
+                    Support Vector Machine
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="glass-card p-4 text-center">
+
+                <h4>🛰 Sentinel-2</h4>
+
+                <p>
+                    Satellite Imagery
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function toggleUpload(show)
+{
+    document.getElementById(
+        "uploadDiv"
+    ).style.display =
+        show ? "block" : "none";
+}
+
+</script>
+
+{% endblock %}
