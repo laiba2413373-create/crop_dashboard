@@ -1,278 +1,245 @@
-/* ==========================
-   GLOBAL
-========================== */
+/*=========================================
+UPLOAD TOGGLE
+=========================================*/
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(
-        135deg,
-        #0f172a,
-        #1e293b,
-        #0f172a
-    );
-    color: white;
-    min-height: 100vh;
-}
+function toggleUpload(show){
 
-/* ==========================
-   SIDEBAR
-========================== */
+    const upload=document.getElementById("uploadDiv");
 
-.sidebar {
-    position: fixed;
-    width: 240px;
-    height: 100vh;
-    left: 0;
-    top: 0;
+    if(upload){
 
-    background: rgba(255,255,255,0.05);
+        upload.style.display=show?"block":"none";
 
-    backdrop-filter: blur(20px);
-
-    border-right: 1px solid rgba(255,255,255,0.1);
-
-    padding-top: 30px;
-}
-
-.logo {
-    font-size: 28px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 50px;
-    color: #00ff99;
-}
-
-.sidebar a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 18px 30px;
-    font-size: 18px;
-    transition: 0.3s;
-}
-
-.sidebar a:hover {
-    background: rgba(255,255,255,0.1);
-    color: #00ff99;
-    border-left: 4px solid #00ff99;
-}
-
-/* ==========================
-   MAIN
-========================== */
-
-.main-content {
-    margin-left: 260px;
-    padding: 30px;
-}
-
-/* ==========================
-   GLASS CARD
-========================== */
-
-.glass-card {
-
-    background: rgba(
-        255,
-        255,
-        255,
-        0.08
-    );
-
-    border: 1px solid rgba(
-        255,
-        255,
-        255,
-        0.1
-    );
-
-    backdrop-filter: blur(20px);
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 8px 32px rgba(
-            0,
-            0,
-            0,
-            0.3
-        );
-}
-
-/* ==========================
-   NAVBAR
-========================== */
-
-.navbar {
-    border-radius: 20px;
-    padding: 20px;
-}
-
-/* ==========================
-   FORM
-========================== */
-
-.form-label {
-    color: white;
-    font-weight: 500;
-}
-
-.form-select,
-.form-control {
-
-    background: rgba(
-        255,
-        255,
-        255,
-        0.1
-    ) !important;
-
-    border: 1px solid rgba(
-        255,
-        255,
-        255,
-        0.1
-    );
-
-    color: white !important;
-
-    border-radius: 12px;
-}
-
-.form-select option {
-    color: black;
-}
-
-.form-control::file-selector-button {
-
-    background: #00ff99;
-    border: none;
-    color: black;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-/* ==========================
-   RADIO BUTTONS
-========================== */
-
-.form-check-label {
-    color: white;
-}
-
-/* ==========================
-   AI BUTTON
-========================== */
-
-.btn-ai {
-
-    background: linear-gradient(
-        45deg,
-        #00ff99,
-        #00d4ff
-    );
-
-    border: none;
-
-    color: black;
-
-    padding: 14px 40px;
-
-    border-radius: 40px;
-
-    font-size: 18px;
-
-    font-weight: 600;
-
-    transition: 0.3s;
-}
-
-.btn-ai:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 0 30px
-        rgba(0,255,153,0.5);
-
-    color: black;
-}
-
-/* ==========================
-   ACCURACY CARD
-========================== */
-
-.accuracy-card {
-
-    transition: 0.3s;
-}
-
-.accuracy-card:hover {
-
-    transform: translateY(-10px);
-
-    box-shadow:
-        0 0 40px
-        rgba(0,255,153,0.3);
-}
-
-.accuracy-value {
-
-    font-size: 55px;
-
-    font-weight: 700;
-
-    color: #00ff99;
-}
-
-/* ==========================
-   MAP
-========================== */
-
-iframe {
-
-    border-radius: 20px;
-
-    overflow: hidden;
-}
-
-/* ==========================
-   HEADINGS
-========================== */
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-
-    color: white;
-}
-
-/* ==========================
-   RESPONSIVE
-========================== */
-
-@media (max-width: 768px) {
-
-    .sidebar {
-
-        width: 100%;
-
-        height: auto;
-
-        position: relative;
     }
 
-    .main-content {
-
-        margin-left: 0;
-    }
-
-    .accuracy-value {
-
-        font-size: 40px;
-    }
 }
+
+/*=========================================
+PAGE LOADER
+=========================================*/
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+document.body.classList.add("fade-up");
+
+});
+
+/*=========================================
+BUTTON LOADING
+=========================================*/
+
+const form=document.querySelector("form");
+
+if(form){
+
+form.addEventListener("submit",function(){
+
+const btn=this.querySelector(".btn-ai");
+
+if(btn){
+
+btn.disabled=true;
+
+btn.innerHTML=`
+<span class="spinner-border spinner-border-sm me-2"></span>
+Running AI Model...
+`;
+
+}
+
+});
+
+}
+
+/*=========================================
+COUNT UP ANIMATION
+=========================================*/
+
+function animateValue(el){
+
+const target=parseFloat(el.innerText);
+
+if(isNaN(target)) return;
+
+let count=0;
+
+const speed=target/80;
+
+const interval=setInterval(()=>{
+
+count+=speed;
+
+if(count>=target){
+
+count=target;
+
+clearInterval(interval);
+
+}
+
+el.innerHTML=count.toFixed(2)+"%";
+
+},20);
+
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+document.querySelectorAll(".accuracy-value").forEach(e=>{
+
+animateValue(e);
+
+});
+
+});
+
+/*=========================================
+CARD HOVER EFFECT
+=========================================*/
+
+document.querySelectorAll(".glass-card").forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect=card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+card.style.background=
+
+`radial-gradient(circle at ${x}px ${y}px,
+rgba(255,255,255,.12),
+rgba(255,255,255,.05) 60%)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.background="rgba(255,255,255,.08)";
+
+});
+
+});
+
+/*=========================================
+SCROLL ANIMATION
+=========================================*/
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0)";
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".glass-card").forEach(card=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(40px)";
+
+card.style.transition=".8s";
+
+observer.observe(card);
+
+});
+
+/*=========================================
+BACK TO TOP
+=========================================*/
+
+const topBtn=document.createElement("button");
+
+topBtn.innerHTML="↑";
+
+topBtn.id="topBtn";
+
+document.body.appendChild(topBtn);
+
+topBtn.style.position="fixed";
+topBtn.style.right="25px";
+topBtn.style.bottom="25px";
+topBtn.style.width="55px";
+topBtn.style.height="55px";
+topBtn.style.borderRadius="50%";
+topBtn.style.border="none";
+topBtn.style.cursor="pointer";
+topBtn.style.fontSize="22px";
+topBtn.style.display="none";
+topBtn.style.zIndex="999";
+topBtn.style.background="linear-gradient(135deg,#00f5c3,#37b7ff)";
+topBtn.style.color="#07131d";
+topBtn.style.fontWeight="700";
+topBtn.style.boxShadow="0 0 25px rgba(0,245,195,.35)";
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>300){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+});
+
+topBtn.onclick=()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+/*=========================================
+TILT EFFECT
+=========================================*/
+
+document.querySelectorAll(".feature-card").forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const rect=card.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+
+const y=e.clientY-rect.top;
+
+const rotateX=((y-rect.height/2)/15);
+
+const rotateY=((rect.width/2-x)/15);
+
+card.style.transform=
+
+`perspective(1000px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+translateY(-8px)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="rotateX(0) rotateY(0)";
+
+});
+
+});

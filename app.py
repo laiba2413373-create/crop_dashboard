@@ -14,11 +14,45 @@ from werkzeug.utils import secure_filename
 
 from gee_backend import *
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 import ee
 
+SERVICE_ACCOUNT = "crop-dashboard@bubbly-sentinel-486808-v7.iam.gserviceaccount.com"
+KEY_FILE = "bubbly-sentinel-486808-v7-94f12f733330.json"
+
+credentials = ee.ServiceAccountCredentials(
+    SERVICE_ACCOUNT,
+    KEY_FILE
+)
+
 ee.Initialize(
+    credentials,
     project="bubbly-sentinel-486808-v7"
 )
+
+
+
+
+
+
+
+
+
+
+
+
 
 app = Flask(__name__)
 

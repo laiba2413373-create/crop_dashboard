@@ -2,67 +2,453 @@
 
 {% block content %}
 
-<div class="container">
+<!-- ================= HERO ================= -->
 
-    <div class="glass-card p-5">
+<div class="glass-card hero fade-up">
 
-        <h1 class="text-center mb-4">
+    <h1>
 
-            🌾 About Crop AI Platform
+        About
 
-        </h1>
+        <span>Crop AI Platform</span>
 
-        <p>
+    </h1>
 
-            Crop AI Platform is an Artificial Intelligence
-            based crop classification system developed
-            using Google Earth Engine and Sentinel-2
-            satellite imagery.
+    <p>
 
-        </p>
+        An Artificial Intelligence powered web application for
+        crop classification using Google Earth Engine,
+        Sentinel-2 satellite imagery and Machine Learning
+        algorithms.
 
-        <hr>
+    </p>
 
-        <h3>🚀 Features</h3>
+</div>
 
-        <ul>
-            <li>Random Forest Classification</li>
-            <li>Support Vector Machine</li>
-            <li>Sentinel-2 Satellite Images</li>
-            <li>Interactive Maps</li>
-            <li>CSV Dataset Upload</li>
-            <li>Accuracy Assessment</li>
-        </ul>
+<!-- ================= PROJECT OVERVIEW ================= -->
 
-        <hr>
+<div class="glass-card p-5 mb-5 fade-up">
 
-        <h3>🛰 Satellite Data</h3>
+    <h2 class="section-title text-center">
 
-        <p>
-            Sentinel-2 Surface Reflectance imagery
-            from Google Earth Engine.
-        </p>
+        🌾 Project Overview
 
-        <hr>
+    </h2>
 
-        <h3>🤖 Machine Learning Models</h3>
+    <p class="text-center">
 
-        <ul>
-            <li>Random Forest</li>
-            <li>Support Vector Machine</li>
-        </ul>
+        Crop AI Platform is designed to classify agricultural crops
+        using satellite imagery and Machine Learning. Users can
+        classify crops by selecting a province and crop type or
+        uploading their own CSV dataset for analysis.
 
-        <hr>
+    </p>
 
-        <h3>🎓 Final Year Project</h3>
+</div>
 
-        <p>
-            AI Based Crop Classification Platform
-            using Satellite Imagery and Machine Learning.
-        </p>
+<!-- ================= FEATURES ================= -->
+
+<div class="row g-4 mb-5 fade-up">
+
+    <div class="col-lg-4">
+
+        <div class="glass-card feature-card">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-diagram-3-fill"></i>
+
+            </div>
+
+            <h4>
+
+                Random Forest
+
+            </h4>
+
+            <p>
+
+                Ensemble Machine Learning model for
+                accurate crop classification.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="glass-card feature-card">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-cpu-fill"></i>
+
+            </div>
+
+            <h4>
+
+                Support Vector Machine
+
+            </h4>
+
+            <p>
+
+                Powerful classifier for separating
+                crop classes using spectral features.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="glass-card feature-card">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-globe2"></i>
+
+            </div>
+
+            <h4>
+
+                Google Earth Engine
+
+            </h4>
+
+            <p>
+
+                Cloud-based satellite processing
+                using Sentinel-2 imagery.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= TECHNOLOGIES ================= -->
+
+<div class="glass-card p-5 mb-5 fade-up">
+
+    <h2 class="section-title text-center">
+
+        🚀 Technologies Used
+
+    </h2>
+
+    <div class="row mt-4 text-center">
+
+        <div class="col-md-3 mb-4">
+
+            <span class="badge-ai">
+
+                🐍 Python
+
+            </span>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <span class="badge-ai">
+
+                🌍 Google Earth Engine
+
+            </span>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <span class="badge-ai">
+
+                🛰 Sentinel-2
+
+            </span>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <span class="badge-ai">
+
+                🤖 Machine Learning
+
+            </span>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <span class="badge-ai">
+
+                🌐 Flask
+
+            </span>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <span class="badge-ai">
+
+                🗺 Folium Maps
+
+            </span>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <span class="badge-ai">
+
+                📊 Pandas
+
+            </span>
+
+        </div>
+
+        <div class="col-md-3 mb-4">
+
+            <span class="badge-ai">
+
+                💻 Bootstrap 5
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= WORKFLOW ================= -->
+
+<div class="glass-card p-5 mb-5 fade-up">
+
+    <h2 class="section-title text-center">
+
+        📈 Classification Workflow
+
+    </h2>
+
+    <div class="row mt-5 text-center">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-upload"></i>
+
+            </div>
+
+            <h5>
+
+                Input
+
+            </h5>
+
+            <p>
+
+                Select province, crop or upload CSV dataset.
+
+            </p>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-globe"></i>
+
+            </div>
+
+            <h5>
+
+                Satellite Data
+
+            </h5>
+
+            <p>
+
+                Sentinel-2 imagery from Google Earth Engine.
+
+            </p>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-robot"></i>
+
+            </div>
+
+            <h5>
+
+                AI Models
+
+            </h5>
+
+            <p>
+
+                Random Forest & Support Vector Machine.
+
+            </p>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-bar-chart-fill"></i>
+
+            </div>
+
+            <h5>
+
+                Output
+
+            </h5>
+
+            <p>
+
+                Interactive map with model accuracy.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= PROJECT INFO ================= -->
+
+<div class="glass-card p-5 fade-up">
+
+    <h2 class="section-title text-center">
+
+        🎓 Final Year Project
+
+    </h2>
+
+    <p class="text-center">
+
+        This project demonstrates the integration of
+        Remote Sensing, Artificial Intelligence and
+        Cloud Computing for precision agriculture.
+        It enables intelligent crop monitoring through
+        Machine Learning models trained on Sentinel-2
+        satellite imagery processed within Google Earth Engine.
+
+    </p>
+
+    <hr>
+
+    <div class="text-center">
+
+        <span class="badge-ai">
+
+            🌾 Smart Agriculture
+
+        </span>
+
+        <span class="badge-ai">
+
+            🤖 Artificial Intelligence
+
+        </span>
+
+        <span class="badge-ai">
+
+            🛰 Remote Sensing
+
+        </span>
+
+        <span class="badge-ai">
+
+            ☁ Cloud Computing
+
+        </span>
 
     </div>
 
 </div>
 
 {% endblock %}
+
+
+
+
+
+
+/*=========================================
+
+BACK TO TOP
+
+=========================================*/
+
+#topBtn{
+
+transition:.35s;
+
+}
+
+#topBtn:hover{
+
+transform:scale(1.1);
+
+box-shadow:0 0 30px rgba(0,245,195,.6);
+
+}
+
+/*=========================================
+
+SCROLLBAR
+
+=========================================*/
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#08131d;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:linear-gradient(#00f5c3,#37b7ff);
+
+border-radius:20px;
+
+}
+
+/*=========================================
+
+SELECTION
+
+=========================================*/
+
+::selection{
+
+background:#00f5c3;
+
+color:#07131d;
+
+}

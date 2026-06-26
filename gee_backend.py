@@ -1,9 +1,27 @@
+
+
+
 import ee
 import pandas as pd
 
+SERVICE_ACCOUNT = "crop-dashboard@bubbly-sentinel-486808-v7.iam.gserviceaccount.com"
+KEY_FILE = "bubbly-sentinel-486808-v7-94f12f733330.json"
+
+credentials = ee.ServiceAccountCredentials(
+    SERVICE_ACCOUNT,
+    KEY_FILE
+)
+
 ee.Initialize(
+    credentials,
     project="bubbly-sentinel-486808-v7"
 )
+
+
+
+
+
+
 
 # ==================================
 # REGION

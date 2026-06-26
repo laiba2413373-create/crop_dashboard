@@ -2,121 +2,200 @@
 
 {% block content %}
 
-<div class="container">
+<!-- ================= HERO ================= -->
 
-    <div class="glass-card p-4 mb-4">
+<div class="glass-card hero fade-up">
 
-        <h2 class="text-center mb-4">
-            🌾 Crop Classification Dashboard
+    <h1>
+
+        AI Powered
+
+        <span>Crop Classification</span>
+
+    </h1>
+
+    <p>
+
+        Classify agricultural crops using
+        <strong>Sentinel-2 Satellite Imagery</strong>,
+        Google Earth Engine and Machine Learning.
+        Compare Random Forest and SVM models
+        with interactive maps and accuracy analysis.
+
+    </p>
+
+    <div class="hero-chips">
+
+        <div class="badge-ai">
+            🛰 Sentinel-2
+        </div>
+
+        <div class="badge-ai">
+            🤖 AI Models
+        </div>
+
+        <div class="badge-ai">
+            🌾 Agriculture
+        </div>
+
+        <div class="badge-ai">
+            📍 Pakistan
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FORM ================= -->
+
+<div class="glass-card p-5 fade-up">
+
+    <div class="text-center mb-5">
+
+        <h2 class="section-title">
+
+            Start Classification
+
         </h2>
 
-        <form action="/predict"
-              method="POST"
-              enctype="multipart/form-data">
+        <p class="section-subtitle">
 
-            <div class="row">
+            Select your province, crop, machine learning
+            model and dataset.
 
-                <!-- Province -->
+        </p>
 
-                <div class="col-md-6 mb-3">
+    </div>
 
-                    <label class="form-label">
-                        Province
-                    </label>
+    <form
+        action="/predict"
+        method="POST"
+        enctype="multipart/form-data">
 
-                    <select class="form-select"
-                            name="province"
-                            required>
+        <div class="row">
 
-                        {% for p in provinces %}
+            <!-- Province -->
 
-                        <option value="{{ p }}">
-                            {{ p }}
-                        </option>
-
-                        {% endfor %}
-
-                    </select>
-
-                </div>
-
-                <!-- Crop -->
-
-                <div class="col-md-6 mb-3">
-
-                    <label class="form-label">
-                        Crop
-                    </label>
-
-                    <select class="form-select"
-                            name="crop"
-                            required>
-
-                        {% for c in crops %}
-
-                        <option value="{{ c }}">
-                            {{ c }}
-                        </option>
-
-                        {% endfor %}
-
-                    </select>
-
-                </div>
-
-            </div>
-
-            <!-- Model -->
-
-            <div class="mb-4">
+            <div class="col-lg-6 mb-4">
 
                 <label class="form-label">
 
-                    Model
+                    📍 Province
 
                 </label>
 
-                <select class="form-select"
-                        name="model">
+                <select
+                    class="form-select"
+                    name="province"
+                    required>
 
-                    <option value="RF">
-                        Random Forest
+                    {% for p in provinces %}
+
+                    <option value="{{ p }}">
+
+                        {{ p }}
+
                     </option>
 
-                    <option value="SVM">
-                        SVM
-                    </option>
-
-                    <option value="Both">
-                        Both
-                    </option>
+                    {% endfor %}
 
                 </select>
 
             </div>
 
-            <!-- Dataset -->
+            <!-- Crop -->
 
-            <div class="mb-3">
+            <div class="col-lg-6 mb-4">
 
                 <label class="form-label">
 
-                    Dataset
+                    🌱 Crop
 
                 </label>
 
-                <div class="form-check">
+                <select
+                    class="form-select"
+                    name="crop"
+                    required>
 
-                    <input class="form-check-input"
-                           type="radio"
-                           name="dataset"
-                           value="default"
-                           checked
-                           onclick="toggleUpload(false)">
+                    {% for c in crops %}
+
+                    <option value="{{ c }}">
+
+                        {{ c }}
+
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <!-- MODEL -->
+
+        <div class="mb-4">
+
+            <label class="form-label">
+
+                🤖 Machine Learning Model
+
+            </label>
+
+            <select
+                class="form-select"
+                name="model">
+
+                <option value="RF">
+
+                    🌲 Random Forest
+
+                </option>
+
+                <option value="SVM">
+
+                    🌿 Support Vector Machine
+
+                </option>
+
+                <option value="Both">
+
+                    ⚡ Compare Both Models
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- DATASET -->
+
+        <div class="mb-4">
+
+            <label class="form-label">
+
+                📂 Dataset Source
+
+            </label>
+
+            <div class="glass-card p-4">
+
+                <div class="form-check mb-3">
+
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="dataset"
+                        value="default"
+                        checked
+                        onclick="toggleUpload(false)">
 
                     <label class="form-check-label">
 
-                        Use Default Dataset
+                        🌍 Use Default Earth Engine Dataset
 
                     </label>
 
@@ -124,15 +203,16 @@
 
                 <div class="form-check">
 
-                    <input class="form-check-input"
-                           type="radio"
-                           name="dataset"
-                           value="upload"
-                           onclick="toggleUpload(true)">
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="dataset"
+                        value="upload"
+                        onclick="toggleUpload(true)">
 
                     <label class="form-check-label">
 
-                        Upload CSV Dataset
+                        📤 Upload Custom CSV Dataset
 
                     </label>
 
@@ -140,81 +220,181 @@
 
             </div>
 
-            <!-- Upload -->
+        </div>
 
-            <div class="mb-4"
-                 id="uploadDiv"
-                 style="display:none;">
+        <!-- Upload -->
 
-                <label class="form-label">
+        <div
+            id="uploadDiv"
+            style="display:none;"
+            class="mb-4">
 
-                    Upload CSV
+            <label class="form-label">
 
-                </label>
+                Upload CSV Dataset
 
-                <input type="file"
-                       class="form-control"
-                       name="csv"
-                       accept=".csv">
+            </label>
+
+            <input
+                class="form-control"
+                type="file"
+                name="csv"
+                accept=".csv">
+
+        </div>
+
+        <div class="text-center mt-5">
+
+            <button
+                type="submit"
+                class="btn btn-ai">
+
+                🚀 Run AI Classification
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+<!-- ================= FEATURES ================= -->
+
+<div class="row mt-5 g-4 fade-up">
+
+    <!-- Random Forest -->
+
+    <div class="col-lg-4 col-md-6">
+
+        <div class="glass-card feature-card">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-diagram-3-fill"></i>
 
             </div>
 
-            <div class="text-center">
+            <h4>
 
-                <button type="submit"
-                        class="btn btn-ai">
+                🌲 Random Forest
 
-                    🚀 Run Classification
+            </h4>
 
-                </button>
+            <p>
+
+                Powerful ensemble learning algorithm
+                that combines multiple decision trees
+                to provide highly accurate crop
+                classification.
+
+            </p>
+
+            <div class="mt-4">
+
+                <span class="badge-ai">
+
+                    ⚡ Fast
+
+                </span>
+
+                <span class="badge-ai">
+
+                    🎯 Accurate
+
+                </span>
 
             </div>
 
-        </form>
+        </div>
 
     </div>
 
-    <!-- Features -->
+    <!-- SVM -->
 
-    <div class="row">
+    <div class="col-lg-4 col-md-6">
 
-        <div class="col-md-4">
+        <div class="glass-card feature-card">
 
-            <div class="glass-card p-4 text-center">
+            <div class="icon-circle">
 
-                <h4>🌲 RF</h4>
+                <i class="bi bi-cpu-fill"></i>
 
-                <p>
-                    Random Forest Classification
-                </p>
+            </div>
+
+            <h4>
+
+                🌿 Support Vector Machine
+
+            </h4>
+
+            <p>
+
+                Advanced machine learning classifier
+                capable of separating crop classes
+                using optimal decision boundaries.
+
+            </p>
+
+            <div class="mt-4">
+
+                <span class="badge-ai">
+
+                    🤖 AI
+
+                </span>
+
+                <span class="badge-ai">
+
+                    📊 ML
+
+                </span>
 
             </div>
 
         </div>
 
-        <div class="col-md-4">
+    </div>
 
-            <div class="glass-card p-4 text-center">
+    <!-- Sentinel -->
 
-                <h4>🌿 SVM</h4>
+    <div class="col-lg-4">
 
-                <p>
-                    Support Vector Machine
-                </p>
+        <div class="glass-card feature-card">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-globe-asia-australia"></i>
 
             </div>
 
-        </div>
+            <h4>
 
-        <div class="col-md-4">
+                🛰 Sentinel-2 Imagery
 
-            <div class="glass-card p-4 text-center">
+            </h4>
 
-                <h4>🛰 Sentinel-2</h4>
+            <p>
 
-                <p>
-                    Satellite Imagery
-                </p>
+                High-resolution satellite imagery
+                from Google Earth Engine providing
+                accurate spectral information
+                for crop monitoring.
+
+            </p>
+
+            <div class="mt-4">
+
+                <span class="badge-ai">
+
+                    🌍 GIS
+
+                </span>
+
+                <span class="badge-ai">
+
+                    ☁ Cloud
+
+                </span>
 
             </div>
 
@@ -224,14 +404,155 @@
 
 </div>
 
+<!-- ================= PROCESS ================= -->
+
+<div class="glass-card p-5 mt-5 fade-up">
+
+    <div class="text-center mb-5">
+
+        <h2 class="section-title">
+
+            AI Classification Workflow
+
+        </h2>
+
+        <p class="section-subtitle">
+
+            End-to-end intelligent crop mapping
+            powered by Google Earth Engine.
+
+        </p>
+
+    </div>
+
+    <div class="row text-center">
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-cloud-upload-fill"></i>
+
+            </div>
+
+            <h5>
+
+                Dataset
+
+            </h5>
+
+            <p>
+
+                Default Dataset or CSV Upload
+
+            </p>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-globe2"></i>
+
+            </div>
+
+            <h5>
+
+                Satellite Data
+
+            </h5>
+
+            <p>
+
+                Sentinel-2 Imagery
+
+            </p>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-robot"></i>
+
+            </div>
+
+            <h5>
+
+                AI Model
+
+            </h5>
+
+            <p>
+
+                Random Forest / SVM
+
+            </p>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-4">
+
+            <div class="icon-circle">
+
+                <i class="bi bi-bar-chart-fill"></i>
+
+            </div>
+
+            <h5>
+
+                Results
+
+            </h5>
+
+            <p>
+
+                Interactive Map & Accuracy
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<div class="glass-card mt-5 p-4 text-center fade-up">
+
+    <h5 class="text-gradient">
+
+        🌾 AI Crop Classification Platform
+
+    </h5>
+
+    <p class="mb-2">
+
+        Built using Google Earth Engine,
+        Sentinel-2 Satellite Imagery,
+        Random Forest and Support Vector Machine.
+
+    </p>
+
+    <small style="color:var(--muted);">
+
+        © 2026 Crop AI Platform • Final Year Project
+
+    </small>
+
+</div>
+
 <script>
 
-function toggleUpload(show)
-{
-    document.getElementById(
-        "uploadDiv"
-    ).style.display =
-        show ? "block" : "none";
+function toggleUpload(show){
+
+    const upload=document.getElementById("uploadDiv");
+
+    upload.style.display=show?"block":"none";
+
 }
 
 </script>

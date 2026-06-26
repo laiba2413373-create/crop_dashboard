@@ -1,0 +1,8 @@
+venv/
+__pycache__/
+*.pyc
+uploads/
+.env
+
+
+bubbly-sentinel-486808-v7-94f12f733330.json
