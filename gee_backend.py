@@ -1,25 +1,40 @@
-
-
-
 import ee
 import pandas as pd
+import os
+import json
+import tempfile
 
 SERVICE_ACCOUNT = "crop-dashboard@bubbly-sentinel-486808-v7.iam.gserviceaccount.com"
-KEY_FILE = "bubbly-sentinel-486808-v7-94f12f733330.json"
 
-credentials = ee.ServiceAccountCredentials(
-    SERVICE_ACCOUNT,
-    KEY_FILE
-)
+if os.path.exists("bubbly-sentinel-486808-v7-94f12f733330.json"):
+
+    credentials = ee.ServiceAccountCredentials(
+        SERVICE_ACCOUNT,
+        "bubbly-sentinel-486808-v7-94f12f733330.json"
+    )
+
+else:
+
+    key_data = json.loads(os.environ["EE_KEY"])
+
+    temp_file = tempfile.NamedTemporaryFile(
+        mode="w",
+        delete=False,
+        suffix=".json"
+    )
+
+    json.dump(key_data, temp_file)
+    temp_file.close()
+
+    credentials = ee.ServiceAccountCredentials(
+        SERVICE_ACCOUNT,
+        temp_file.name
+    )
 
 ee.Initialize(
     credentials,
     project="bubbly-sentinel-486808-v7"
 )
-
-
-
-
 
 
 
