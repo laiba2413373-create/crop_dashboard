@@ -1,9 +1,7 @@
 from flask import (
     Flask,
     render_template,
-    request,
-    redirect,
-    url_for
+    request
 )
 
 import os
@@ -14,6 +12,7 @@ from werkzeug.utils import secure_filename
 
 from gee_backend import *
 
+import ee
 
 app = Flask(__name__)
 
@@ -21,6 +20,26 @@ UPLOAD_FOLDER = "uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+
+# ==========================
+# PROVINCES & CROPS
+# ==========================
+
+PROVINCES = [
+    "Punjab",
+    "Sindh",
+    "Balochistan",
+    "Khyber Pakhtunkhwa"
+]
+
+CROPS = [
+    "Wheat",
+    "Rice",
+    "Cotton",
+    "Maize",
+    "Sugarcane"
+]
 
 
 # ==========================
@@ -39,25 +58,10 @@ table = ee.FeatureCollection(
 @app.route("/")
 def index():
 
-    provinces = [
-        "Punjab",
-        "Sindh",
-        "Balochistan",
-        "Khyber Pakhtunkhwa"
-    ]
-
-    crops = [
-        "Wheat",
-        "Rice",
-        "Cotton",
-        "Maize",
-        "Sugarcane"
-    ]
-
     return render_template(
         "index.html",
-        provinces=provinces,
-        crops=crops
+        provinces=PROVINCES,
+        crops=CROPS
     )
 
 
@@ -107,6 +111,16 @@ def predict():
 
         file = request.files["csv"]
 
+        # File upload check
+        if file.filename == "":
+
+            return render_template(
+                "index.html",
+                error="Please upload a CSV file.",
+                provinces=PROVINCES,
+                crops=CROPS
+            )
+
         filename = secure_filename(file.filename)
 
         path = os.path.join(
@@ -123,12 +137,15 @@ def predict():
             province,
             crop
         )
-        
+
+        # No matching samples found
         if train is None:
 
             return render_template(
                 "index.html",
-                error="No points found for selected crop and province."
+                error=f"No {crop} samples found in {province} in the uploaded dataset.",
+                provinces=PROVINCES,
+                crops=CROPS
             )
 
     # ==========================
@@ -214,7 +231,6 @@ def predict():
         svm_acc=svm_acc,
         map_html=map_html
     )
-
 
 # ==========================
 # MAIN
