@@ -5,3 +5,12 @@ pandas
 Werkzeug
 google-auth
 gunicorn
+
+
+
+
+# gradio
+# earthengine-api
+# pandas
+# numpy
+# google-auth
