@@ -12,7 +12,6 @@ if os.path.exists("bubbly-sentinel-486808-v7-94f12f733330.json"):
         SERVICE_ACCOUNT,
         "bubbly-sentinel-486808-v7-94f12f733330.json"
     )
-
 else:
 
     key_data = json.loads(os.environ["EE_KEY"])
