@@ -2,12 +2,14 @@ import os
 import json
 import ee
 
+SERVICE_ACCOUNT = os.environ["EE_SERVICE_ACCOUNT"]
+
 service_account_info = json.loads(
-    os.environ["EE_SERVICE_ACCOUNT"]
+    os.environ["EE_KEY"]
 )
 
 credentials = ee.ServiceAccountCredentials(
-    service_account_info["client_email"],
+    SERVICE_ACCOUNT,
     key_data=json.dumps(service_account_info)
 )
 
