@@ -1,28 +1,19 @@
+import os
+import json
 import ee
-import pandas as pd
 
-KPK_GAUL_NAMES = [
-    "Khyber Pakhtunkhwa",
-    "North-West Frontier"
-]
-
-MAP_NDVI_THRESHOLD = 0.40
-MAP_FALLBACK_NDVI_THRESHOLD = 0.25
-MAP_MIN_CONNECTED_PIXELS = 8
-RF_MAP_PROBABILITY_THRESHOLD = 0.35
-RF_MAP_NUMBER_OF_TREES = 100
-
-SERVICE_ACCOUNT = "crop-dashboard@bubbly-sentinel-486808-v7.iam.gserviceaccount.com"
-KEY_FILE = "bubbly-sentinel-486808-v7-94f12f733330.json"
+service_account_info = json.loads(
+    os.environ["EE_SERVICE_ACCOUNT"]
+)
 
 credentials = ee.ServiceAccountCredentials(
-    SERVICE_ACCOUNT,
-    KEY_FILE
+    service_account_info["client_email"],
+    key_data=json.dumps(service_account_info)
 )
 
 ee.Initialize(
     credentials,
-    project="bubbly-sentinel-486808-v7"
+    project=service_account_info["project_id"]
 )
 
 # ==================================
