@@ -1,0 +1,340 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<div class="glass-card hero fade-up">
+
+    <h1>
+        🌾 Classification
+        <span>Results</span>
+    </h1>
+
+    <p>
+        Your crop classification has been completed successfully.
+        Review model performance and visualize the classified
+        satellite imagery below.
+    </p>
+
+</div>
+
+<!-- ================= SUMMARY ================= -->
+
+<div class="row g-4 mb-4 fade-up">
+
+    <div class="col-lg-4">
+
+        <div class="glass-card p-4 h-100 text-center">
+
+            <div class="icon-circle">
+                <i class="bi bi-geo-alt-fill"></i>
+            </div>
+
+            <h5>Province</h5>
+
+            <h2 class="text-gradient">
+                {{ province }}
+            </h2>
+
+        </div>
+
+    </div>
+
+    <!-- 🆕 DISTRICT ADDED (NO UI CHANGE, SAME STYLE) -->
+
+    <div class="col-lg-4">
+
+        <div class="glass-card p-4 h-100 text-center">
+
+            <div class="icon-circle">
+                <i class="bi bi-map-fill"></i>
+            </div>
+
+            <h5>District</h5>
+
+            <h2 class="text-gradient">
+                {{ district }}
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="glass-card p-4 h-100 text-center">
+
+            <div class="icon-circle">
+                <i class="bi bi-tree-fill"></i>
+            </div>
+
+            <h5>Crop</h5>
+
+            <h2 class="text-gradient">
+                {{ crop }}
+            </h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= ACCURACY ================= -->
+
+<div class="row g-4 mb-5 fade-up">
+
+{% if rf_acc != None %}
+
+<div class="col-lg-6">
+
+<div class="glass-card accuracy-card">
+
+<h2>🌲 Random Forest</h2>
+
+<div class="accuracy-value">
+{{ "%.2f"|format(rf_acc) }}%
+</div>
+
+<p>Classification Accuracy</p>
+
+<hr>
+
+<div class="d-flex justify-content-center gap-2">
+
+<span class="badge-ai">✔ Ensemble Learning</span>
+<span class="badge-ai">⚡ Fast</span>
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+
+{% if svm_acc != None %}
+
+<div class="col-lg-6">
+
+<div class="glass-card accuracy-card">
+
+<h2>🌿 Support Vector Machine</h2>
+
+<div class="accuracy-value">
+{{ "%.2f"|format(svm_acc) }}%
+</div>
+
+<p>Classification Accuracy</p>
+
+<hr>
+
+<div class="d-flex justify-content-center gap-2">
+
+<span class="badge-ai">🤖 AI</span>
+<span class="badge-ai">📊 ML</span>
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+<!-- ================= CONFUSION MATRIX ================= -->
+
+{% if rf_matrix != None or svm_matrix != None %}
+
+<div class="row g-4 mb-5 fade-up">
+
+{% if rf_matrix != None %}
+
+<div class="col-lg-6">
+
+<div class="glass-card p-4 h-100">
+
+<h2>Random Forest Matrix</h2>
+
+<div class="table-responsive mt-3">
+
+<table class="table table-bordered table-dark text-center align-middle mb-0">
+
+<thead>
+<tr>
+<th>Actual \ Predicted</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+
+<tbody>
+{% for row in rf_matrix %}
+<tr>
+<th>{{ loop.index0 }}</th>
+{% for value in row %}
+<td>{{ value|int }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+{% if svm_matrix != None %}
+
+<div class="col-lg-6">
+
+<div class="glass-card p-4 h-100">
+
+<h2>SVM Matrix</h2>
+
+<div class="table-responsive mt-3">
+
+<table class="table table-bordered table-dark text-center align-middle mb-0">
+
+<thead>
+<tr>
+<th>Actual \ Predicted</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+
+<tbody>
+{% for row in svm_matrix %}
+<tr>
+<th>{{ loop.index0 }}</th>
+{% for value in row %}
+<td>{{ value|int }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+{% endif %}
+
+<!-- ================= MAP ================= -->
+
+<div class="glass-card map-wrapper fade-up">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<div>
+
+<h2>🛰 Classification Map</h2>
+
+<p>Satellite-based classified crop visualization.</p>
+
+</div>
+
+<div>
+
+<span class="badge-ai">Google Earth Engine</span>
+
+</div>
+
+</div>
+
+{{ map_html|safe }}
+
+</div>
+
+<!-- ================= INFORMATION ================= -->
+
+<div class="row mt-5 g-4 fade-up">
+
+<div class="col-lg-4">
+
+<div class="glass-card feature-card">
+
+<div class="icon-circle">
+<i class="bi bi-globe2"></i>
+</div>
+
+<h4>Satellite Source</h4>
+
+<p>
+Sentinel-2 imagery processed using Google Earth Engine.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="glass-card feature-card">
+
+<div class="icon-circle">
+<i class="bi bi-cpu-fill"></i>
+</div>
+
+<h4>Machine Learning</h4>
+
+<p>
+Random Forest and SVM models trained using spectral bands.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="glass-card feature-card">
+
+<div class="icon-circle">
+<i class="bi bi-bar-chart-fill"></i>
+</div>
+
+<h4>Output</h4>
+
+<p>
+Interactive crop classification map with accuracy metrics.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= ACTION BUTTON ================= -->
+
+<div class="text-center mt-5 mb-4 fade-up">
+
+<a href="/" class="btn btn-ai">
+
+<i class="bi bi-arrow-repeat"></i>
+Run Another Classification
+
+</a>
+
+</div>
+
+{% endblock %}
