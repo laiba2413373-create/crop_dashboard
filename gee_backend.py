@@ -2,6 +2,13 @@ import os
 import json
 import ee
 
+MAP_NDVI_THRESHOLD = 0.40
+MAP_FALLBACK_NDVI_THRESHOLD = 0.25
+MAP_MIN_CONNECTED_PIXELS = 8
+
+RF_MAP_NUMBER_OF_TREES = 100
+RF_MAP_PROBABILITY_THRESHOLD = 0.35
+
 SERVICE_ACCOUNT = os.environ["EE_SERVICE_ACCOUNT"]
 
 service_account_info = json.loads(
