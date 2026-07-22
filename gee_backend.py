@@ -1,5 +1,32 @@
+import os
+import json
+import tempfile
 import ee
-import pandas as pd
+
+SERVICE_ACCOUNT = os.environ["EE_SERVICE_ACCOUNT"]
+
+service_account_json = json.loads(
+    os.environ["EE_KEY"]
+)
+
+temp_key = tempfile.NamedTemporaryFile(
+    mode="w",
+    suffix=".json",
+    delete=False
+)
+
+json.dump(service_account_json, temp_key)
+temp_key.close()
+
+credentials = ee.ServiceAccountCredentials(
+    SERVICE_ACCOUNT,
+    temp_key.name
+)
+
+ee.Initialize(
+    credentials,
+    project="bubbly-sentinel-486808-v7"
+)
 
 KPK_GAUL_NAMES = [
     "Khyber Pakhtunkhwa",
