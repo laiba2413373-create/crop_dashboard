@@ -39,18 +39,6 @@ MAP_MIN_CONNECTED_PIXELS = 8
 RF_MAP_PROBABILITY_THRESHOLD = 0.35
 RF_MAP_NUMBER_OF_TREES = 100
 
-SERVICE_ACCOUNT = "crop-dashboard@bubbly-sentinel-486808-v7.iam.gserviceaccount.com"
-KEY_FILE = "bubbly-sentinel-486808-v7-94f12f733330.json"
-
-credentials = ee.ServiceAccountCredentials(
-    SERVICE_ACCOUNT,
-    KEY_FILE
-)
-
-ee.Initialize(
-    credentials,
-    project="bubbly-sentinel-486808-v7"
-)
 
 # ==================================
 # DISTRICTS
